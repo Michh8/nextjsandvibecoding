@@ -1,3 +1,5 @@
 import { Timer } from '@/components/timer';
-export const metadata={title:'Sesión de enfoque'};
-export default function Page(){return <Timer/>}
+export const metadata = { title: 'Sesión de enfoque' };
+export default function Page() {
+  return <Timer />;
+}

@@ -1,4 +1,90 @@
 'use client';
-import Link from 'next/link';import {usePathname} from 'next/navigation';import {LayoutDashboard,ListTodo,Timer,ChartNoAxesCombined,BookOpen,ArrowUpRight,Sparkles} from 'lucide-react';import {useStudy} from './study-provider';
-const links=[{href:'/',label:'Mi espacio',icon:LayoutDashboard},{href:'/tareas',label:'Mis tareas',icon:ListTodo},{href:'/enfoque',label:'Enfoque',icon:Timer},{href:'/estadisticas',label:'Mi progreso',icon:ChartNoAxesCombined},{href:'/guia',label:'Guía de estudio',icon:BookOpen}];
-export function Shell({children}:{children:React.ReactNode}){const path=usePathname();const {notice}=useStudy();return <><a className="skip" href="#main">Saltar al contenido</a><aside className="sidebar"><Link href="/" className="brand"><span className="brand-icon"><Sparkles size={24}/></span>focuslab<span className="brand-dot">.</span></Link><div className="workspace-label">TU WORKSPACE PERSONAL</div><nav aria-label="Principal">{links.map(({href,label,icon:Icon})=><Link className={path===href?'nav-item active':'nav-item'} key={href} href={href}><Icon size={20}/>{label}{path===href&&<span className="active-dot"/>}</Link>)}</nav><div className="sidebar-note"><span>✳</span><h3>El progreso empieza<br/>con un pequeño paso.</h3><p>Haz espacio para lo importante.</p><Link href="/enfoque">Encuentra tu enfoque <ArrowUpRight size={16}/></Link></div><div className="sidebar-bottom"><div className="avatar">TÚ</div><div><strong>Mi espacio personal</strong><small>Una mejor versión, cada día</small></div></div></aside><div className="content"><header className="topbar"><span>Menos ruido. <strong>Más enfoque.</strong></span><span className="status"><i/> A tu ritmo</span></header><main id="main">{notice&&<p role="alert" className="notice">{notice}</p>}{children}</main><footer>Hecho para avanzar, un día a la vez. <span>FocusLab © 2026</span></footer></div></>}
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import {
+  LayoutDashboard,
+  ListTodo,
+  Timer,
+  ChartNoAxesCombined,
+  BookOpen,
+  ArrowUpRight,
+  Sparkles,
+} from 'lucide-react';
+import { useStudy } from './study-provider';
+const links = [
+  { href: '/', label: 'Mi espacio', icon: LayoutDashboard },
+  { href: '/tareas', label: 'Mis tareas', icon: ListTodo },
+  { href: '/enfoque', label: 'Enfoque', icon: Timer },
+  { href: '/estadisticas', label: 'Mi progreso', icon: ChartNoAxesCombined },
+  { href: '/guia', label: 'Guía de estudio', icon: BookOpen },
+];
+export function Shell({ children }: { children: React.ReactNode }) {
+  const path = usePathname();
+  const { notice } = useStudy();
+  return (
+    <>
+      <a className="skip" href="#main">
+        Saltar al contenido
+      </a>
+      <aside className="sidebar">
+        <Link href="/" className="brand">
+          <span className="brand-icon">
+            <Sparkles size={24} />
+          </span>
+          {process.env.NEXT_PUBLIC_APP_NAME || 'focuslab'}
+          <span className="brand-dot">.</span>
+        </Link>
+        <div className="workspace-label">TU WORKSPACE PERSONAL</div>
+        <nav aria-label="Principal">
+          {links.map(({ href, label, icon: Icon }) => (
+            <Link className={path === href ? 'nav-item active' : 'nav-item'} key={href} href={href}>
+              <Icon size={20} />
+              {label}
+              {path === href && <span className="active-dot" />}
+            </Link>
+          ))}
+        </nav>
+        <div className="sidebar-note">
+          <span>✳</span>
+          <h3>
+            El progreso empieza
+            <br />
+            con un pequeño paso.
+          </h3>
+          <p>Haz espacio para lo importante.</p>
+          <Link href="/enfoque">
+            Encuentra tu enfoque <ArrowUpRight size={16} />
+          </Link>
+        </div>
+        <div className="sidebar-bottom">
+          <div className="avatar">TÚ</div>
+          <div>
+            <strong>Mi espacio personal</strong>
+            <small>Una mejor versión, cada día</small>
+          </div>
+        </div>
+      </aside>
+      <div className="content">
+        <header className="topbar">
+          <span>
+            Menos ruido. <strong>Más enfoque.</strong>
+          </span>
+          <span className="status">
+            <i /> A tu ritmo
+          </span>
+        </header>
+        <main id="main">
+          {notice && (
+            <p role="alert" className="notice">
+              {notice}
+            </p>
+          )}
+          {children}
+        </main>
+        <footer>
+          Hecho para avanzar, un día a la vez. <span>FocusLab © 2026</span>
+        </footer>
+      </div>
+    </>
+  );
+}
