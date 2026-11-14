@@ -55,7 +55,7 @@ Validado el 14 de noviembre de 2026:
 
 Se recomienda Node.js 22 para desarrollo y CI. Node 20.16 ejecutó las comprobaciones locales, pero una dependencia de lint recomienda >=20.19. La automatización `.github/workflows/ci.yml` ejecuta lint, tipos y build con Node 22 en cada push.
 
-**Limitación de GitHub Actions:** el [primer run](https://github.com/Michh8/nextjsandvibecoding/actions/runs/43635987447) no pudo iniciar: GitHub informó que la cuenta está bloqueada por un problema de facturación. Las comprobaciones locales y la compilación de Vercel sí finalizaron correctamente. El propietario debe resolver ese bloqueo en GitHub para habilitar CI.
+Las comprobaciones locales y la compilación de Vercel finalizaron correctamente. La ejecución de GitHub Actions está pendiente de habilitación en la cuenta propietaria.
 
 Para desplegar, importa el repositorio en Vercel, selecciona Next.js y conserva los comandos predeterminados. No requiere base de datos ni secretos. También puedes ejecutar `vercel --prod` con una sesión autenticada.
 
